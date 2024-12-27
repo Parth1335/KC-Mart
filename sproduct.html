@@ -25,19 +25,19 @@
     </section>
     <section id="prodetails">
         <div class="proimage">
-            <img src="assets/Products/M2.jpeg" alt="" >
+            <img src="assets/Products/M2.jpeg" Id="MainImg" >
             <div class="smallimg">
                 <div class="sig">
-                    <img src="assets/Products/M2.jpeg" style="width: 100%;" alt="">
+                    <img src="assets/Products/M2.jpeg" style="width: 100%;" id="col1">
                 </div>
                 <div class="sig">
-                    <img src="assets/Products/C.jpeg" style="width: 100%;" alt="">
+                    <img src="assets/Products/C.jpeg" style="width: 100%;" id="col2">
                 </div>
                 <div class="sig">
-                    <img src="assets/Products/OIP.jpeg" style="width: 100%;" alt="">
+                    <img src="assets/Products/OIP.jpeg" style="width: 100%;" id="col3">
                 </div>
                 <div class="sig">
-                    <img src="assets/Products/T.jpeg" style="width: 100%;" alt="">
+                    <img src="assets/Products/T.jpeg" style="width: 100%;" id="col4">
                 </div>
             </div>
         </div>
@@ -109,6 +109,26 @@
 
 
     </section>
+    <script>
+        let MainImg=document.getElementById("MainImg");
+        let col1=document.getElementById("col1");
+        let col2=document.getElementById("col2");
+        let col3=document.getElementById("col3");
+        let col4=document.getElementById("col4");
+
+        col1.addEventListener('click', function toggle(){
+            MainImg.src="assets/Products/M2.jpeg";
+        });
+        col2.addEventListener('click', function toggle(){
+            MainImg.src="assets/Products/C.jpeg";
+        });
+        col3.addEventListener('click', function toggle(){
+            MainImg.src="assets/Products/OIP.jpeg";
+        });
+        col4.addEventListener('click', function toggle(){
+            MainImg.src="assets/Products/T.jpeg";
+        });
+    </script>
 
     
 </body>
