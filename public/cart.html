@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #cart-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        #cart-container h2 {
+            text-align: center;
+            color: #088178;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #empty-msg {
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+        }
+
+        #total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button.checkout-btn {
+            margin-top: 20px;
+            float: right;
+            background-color: #088178;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button.checkout-btn:hover {
+            background-color: #066c64;
+        }
+        .remove-btn {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-list"></div>
+        <div id="total"></div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartList = document.getElementById("cart-list");
+        const totalElement = document.getElementById("total");
+    
+        function updateCartDisplay() {
+            cartList.innerHTML = '';
+            let total = 0;
+    
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p id="empty-msg">Your cart is empty.</p>';
+                totalElement.textContent = '';
+                document.querySelector(".checkout-btn").style.display = "none";
+                return;
+            }
+    
+            cart.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.classList.add("cart-item");
+    
+                div.innerHTML = `
+                    <div>
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-details">Price: $${item.price} × ${item.quantity} = $${item.price * item.quantity}</div>
+                    </div>
+                    <button class="remove-btn" data-index="${index}">Remove</button>
+                `;
+    
+                cartList.appendChild(div);
+                total += item.price * item.quantity;
+            });
+    
+            totalElement.textContent = `Total: $${total}`;
+            document.querySelector(".checkout-btn").style.display = "inline-block";
+    
+            
+            document.querySelectorAll(".remove-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    const index = button.dataset.index;
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartDisplay(); 
+                });
+            });
+        }
+    
+        updateCartDisplay(); 
+    </script>
+    
+
+</body>
+</html>

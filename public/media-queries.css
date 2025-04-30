@@ -1,0 +1,131 @@
+/* ===== Mobile: Up to 600px ===== */
+/* Hide hamburger on large screens */
+#hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Show hamburger on mobile */
+@media screen and (max-width: 600px) {
+    #Navbar {
+        flex-direction: column;
+        position: fixed;
+        right: -100%;
+        top: 60px;
+        background-color: bisque;
+        width: 70%;
+        height: 100vh;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+
+    #Navbar.active {
+        right: 0;
+    }
+
+    #hamburger {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .Header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    #Navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .in h1, .in h2, .in h4 {
+        text-align: center;
+        padding: 5px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pro {
+        width: 90%;
+    }
+
+    #prodetails {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .proimage, .spd {
+        width: 100%;
+    }
+
+    .smallimg {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .col {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ===== Tablet: 601px to 1024px ===== */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .Header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+
+    #Navbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .container {
+        justify-content: space-around;
+    }
+
+    .pro {
+        width: 45%;
+    }
+
+    #prodetails {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .proimage, .spd {
+        width: 90%;
+    }
+
+    .smallimg {
+        width: 90%;
+        margin: auto;
+    }
+
+    #footer {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .col {
+        flex: 1 1 40%;
+        margin: 10px;
+    }
+}
+
